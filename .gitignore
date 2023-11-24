@@ -1,1 +1,6 @@
+*_index.json
+*.sig
+*.yaml
 libraries
+packages
+staging
