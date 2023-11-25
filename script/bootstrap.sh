@@ -4,6 +4,8 @@
 # * TODO: Ensure prerequisites are met
 # * Set 'additional_urls'
 # * Set 'directories' to use this repository
+# * Install Arduino core
+# * Install Arduino libraries
 # * ???
 
 _directories_data="$(git rev-parse --show-toplevel)"
@@ -31,3 +33,15 @@ arduino-cli config --config-file "$_config_file" \
   set directories.downloads "$_directories_data/staging"
 arduino-cli config --config-file "$_config_file" \
   set directories.user "$_directories_data"
+
+# Install the Arduino core
+arduino-cli --config-file "$_config_file" core update-index
+arduino-cli --config-file "$_config_file" core upgrade
+arduino-cli --config-file "$_config_file" \
+  core install Heltec-esp32:esp32
+
+# Install Arduino libraries
+arduino-cli --config-file "$_config_file" lib update-index
+arduino-cli --config-file "$_config_file" lib upgrade
+arduino-cli --config-file "$_config_file" \
+  lib install "Heltec ESP32 Dev-Boards"
