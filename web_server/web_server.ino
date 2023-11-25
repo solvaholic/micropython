@@ -10,85 +10,95 @@
   Based on https://github.com/Heltec-Aaron-Lee/WiFi_Kit_series/blob/0.0.9/esp32/libraries/WiFi/examples/WiFiAccessPoint/WiFiAccessPoint.ino
   Which was created for arduino-esp32 on 04 July, 2018
   by Elochukwu Ifediora (fedy0)
+
+  And based on https://github.com/Heltec-Aaron-Lee/WiFi_Kit_series/blob/0.0.9/esp32/libraries/WebServer/examples/HelloServer/HelloServer.ino
+
 */
 
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WiFiAP.h>
+#include <WebServer.h>
 
 // #define LED_BUILTIN 2   // Set the GPIO pin where you connected your test LED or comment this line out if your dev board has a built-in LED
 
 // Set these to your desired credentials.
 const char *ssid = "esp32wifi";
-const char *password = "yourPassword";
 
-WiFiServer server(80);
+// Want to set a password on the WiFi? Try this:
+//   const char *password = "yourPassword";
+
+WebServer server(80);
+
+void handleRoot() {
+  digitalWrite(LED_BUILTIN, 1);
+  server.send(200, "text/plain", "hello from esp32!");
+  digitalWrite(LED_BUILTIN, 0);
+}
+
+void handleNotFound() {
+  digitalWrite(LED_BUILTIN, 1);
+  String message = "File Not Found\n\n";
+  message += "URI: ";
+  message += server.uri();
+  message += "\nMethod: ";
+  message += (server.method() == HTTP_GET) ? "GET" : "POST";
+  message += "\nArguments: ";
+  message += server.args();
+  message += "\n";
+  for (uint8_t i = 0; i < server.args(); i++) {
+    message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
+  }
+  server.send(404, "text/plain", message);
+  digitalWrite(LED_BUILTIN, 0);
+}
+
+void logThisRequest() {
+  String message = "New request: ";
+  message += server.method() == HTTP_GET ? "GET" : "POST";
+  message += " ";
+  message += server.uri();
+  message += " from ";
+  message += server.client().remoteIP().toString();
+  Serial.println(message);
+}
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
-
+  digitalWrite(LED_BUILTIN, 0);
   Serial.begin(115200);
+
   Serial.println();
   Serial.println("Configuring access point...");
 
-  // You can remove the password parameter if you want the AP to be open.
-//  WiFi.softAP(ssid, password);
+  // Want to set a password on the WiFi? Try this:
+  //   WiFi.softAP(ssid, password);
   WiFi.softAP(ssid);
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(myIP);
   server.begin();
 
-  Serial.println("Server started");
+  Serial.println("");
+
+  server.on("/", handleRoot);
+  server.on("/H", []() {
+    digitalWrite(LED_BUILTIN, HIGH);
+    server.send(200, "text/plain", "Lights on");
+    logThisRequest();
+  });
+  server.on("/L", []() {
+    digitalWrite(LED_BUILTIN, LOW);
+    server.send(200, "text/plain", "Lights off");
+    logThisRequest();
+  });
+  server.onNotFound(handleNotFound);
+
+  server.begin();
+  Serial.println("HTTP server started");
 }
 
 void loop() {
-  WiFiClient client = server.available();   // listen for incoming clients
-
-  if (client) {                             // if you get a client,
-    Serial.println("New Client.");           // print a message out the serial port
-    String currentLine = "";                // make a String to hold incoming data from the client
-    while (client.connected()) {            // loop while the client's connected
-      if (client.available()) {             // if there's bytes to read from the client,
-        char c = client.read();             // read a byte, then
-        Serial.write(c);                    // print it out the serial monitor
-        if (c == '\n') {                    // if the byte is a newline character
-
-          // if the current line is blank, you got two newline characters in a row.
-          // that's the end of the client HTTP request, so send a response:
-          if (currentLine.length() == 0) {
-            // HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK)
-            // and a content-type so the client knows what's coming, then a blank line:
-            client.println("HTTP/1.1 200 OK");
-            client.println("Content-type:text/html");
-            client.println();
-
-            // the content of the HTTP response follows the header:
-            client.print("Click <a href=\"/H\">here</a> to turn ON the LED.<br>");
-            client.print("Click <a href=\"/L\">here</a> to turn OFF the LED.<br>");
-
-            // The HTTP response ends with another blank line:
-            client.println();
-            // break out of the while loop:
-            break;
-          } else {    // if you got a newline, then clear currentLine:
-            currentLine = "";
-          }
-        } else if (c != '\r') {  // if you got anything else but a carriage return character,
-          currentLine += c;      // add it to the end of the currentLine
-        }
-
-        // Check to see if the client request was "GET /H" or "GET /L":
-        if (currentLine.endsWith("GET /H")) {
-          digitalWrite(LED_BUILTIN, HIGH);               // GET /H turns the LED on
-        }
-        if (currentLine.endsWith("GET /L")) {
-          digitalWrite(LED_BUILTIN, LOW);                // GET /L turns the LED off
-        }
-      }
-    }
-    // close the connection:
-    client.stop();
-    Serial.println("Client Disconnected.");
-  }
+  server.handleClient();
+  delay(2);//allow the cpu to switch to other tasks
 }
