@@ -1,6 +1,8 @@
 *_index.json
 *.sig
-*.yaml
+arduino-cli.yaml
+inventory.yaml
 libraries
 packages
+sketch.yaml
 staging
