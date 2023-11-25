@@ -1,6 +1,6 @@
 # Arduino Sketches Repository
 
-This repository contains several Arduino sketches, written for the ESP32 microcontroller. Each sketch is organized in its own directory, along with its corresponding documentation.
+This repository contains several Arduino sketches, written for Heltec's Wifi kit 32 ESP32 microcontroller. Each sketch is organized in its own directory, along with its corresponding documentation.
 
 ## Sketches
 
@@ -12,9 +12,9 @@ This repository contains several Arduino sketches, written for the ESP32 microco
 
 - [Heltec ESP32 Documentation](https://docs.heltec.org)
 - [Heltec ESP32 Quick Start Guide](https://docs.heltec.org/en/node/esp32/esp32_general_docs/quick_start.html)
+- [Heltec WiFi Kit 32 PDF](https://resource.heltec.cn/download/WiFi_Kit_32/WiFi%20Kit32.pdf)
 - [Heltec Community](http://community.heltec.cn)
 - [Heltec WiFi Kit 32 Library](https://github.com/HelTecAutomation/Heltec_ESP32)
-- [Heltec WiFi Kit 32 PDF](https://resource.heltec.cn/download/WiFi_Kit_32/WiFi%20Kit32.pdf)
 - [Heltec Framework](https://github.com/Heltec-Aaron-Lee/WiFi_Kit_series/blob/master/README.md)
 - [Heltec Framework Pre-v3](https://github.com/Heltec-Aaron-Lee/WiFi_Kit_series/blob/0aaf0d08b20c2d67aab416ae632320ac11ca7ea6/README.md)
 - [ESP Exception Decoder](https://github.com/me-no-dev/EspExceptionDecoder)
@@ -22,6 +22,8 @@ This repository contains several Arduino sketches, written for the ESP32 microco
 ## Getting Started
 
 To get started, clone this repository and open the sketches in your Arduino IDE. Each sketch directory contains a .ino file that can be directly opened in the Arduino IDE.
+
+If you'd like to use `arduino-cli` and a different IDE, you can use **./script/bootstrap.sh** to install the board and libraries. The scripts in **./script** have been tested manually in MacOS 14; They assume you already have `arduino-cli` installed.
 
 ## Contributing
 

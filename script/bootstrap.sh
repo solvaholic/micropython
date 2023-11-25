@@ -4,6 +4,7 @@
 # * TODO: Ensure prerequisites are met
 # * Set 'additional_urls'
 # * Set 'directories' to use this repository
+# * Overwrite global Arduino15 configuration file
 # * Install Arduino core
 # * Install Arduino libraries
 # * ???
@@ -33,6 +34,11 @@ arduino-cli config --config-file "$_config_file" \
   set directories.downloads "$_directories_data/staging"
 arduino-cli config --config-file "$_config_file" \
   set directories.user "$_directories_data"
+
+# Overwrite global Arduino15 configuration file
+if [ -d "$HOME/Library/Arduino15" ]; then
+  cp -f "$_config_file" "$HOME/Library/Arduino15/arduino-cli.yaml"
+fi
 
 # Install the Arduino core
 arduino-cli --config-file "$_config_file" core update-index
