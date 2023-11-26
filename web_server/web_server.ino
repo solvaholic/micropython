@@ -19,8 +19,13 @@
 #include <WiFiClient.h>
 #include <WiFiAP.h>
 #include <WebServer.h>
+#include <heltec.h>
 
-// #define LED_BUILTIN 2   // Set the GPIO pin where you connected your test LED or comment this line out if your dev board has a built-in LED
+// TODO: Do we need these?
+#define DEMO_DURATION 3000
+typedef void (*Demo)(void);
+int demoMode = 0;
+int counter = 1;
 
 // Set these to your desired credentials.
 const char *ssid = "esp32wifi";
@@ -29,6 +34,7 @@ const char *ssid = "esp32wifi";
 //   const char *password = "yourPassword";
 
 WebServer server(80);
+
 
 void handleRoot() {
   digitalWrite(LED_BUILTIN, 1);
@@ -54,16 +60,28 @@ void handleNotFound() {
 }
 
 void logThisRequest() {
-  String message = "New request: ";
+  String message = server.client().remoteIP().toString();
+  message += " ";
   message += server.method() == HTTP_GET ? "GET" : "POST";
   message += " ";
   message += server.uri();
-  message += " from ";
-  message += server.client().remoteIP().toString();
+
   Serial.println(message);
+
+  Heltec.display->clear();
+  Heltec.display->setFont(ArialMT_Plain_10);
+  Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
+  Heltec.display->drawStringMaxWidth(0, 0, 128, message);
+  Heltec.display->display();
 }
 
 void setup() {
+  Heltec.begin(true /*DisplayEnable Enable*/, false /*LoRa Disable*/, false /*Serial Enable*/);
+  Heltec.display->flipScreenVertically();
+  Heltec.display->setFont(ArialMT_Plain_10);
+  Heltec.display->fillRect(0, 0, 128, 64);
+  Heltec.display->display();
+
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, 0);
   Serial.begin(115200);
