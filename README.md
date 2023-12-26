@@ -4,13 +4,17 @@ This repository contains several Arduino sketches, written for Heltec's Wifi kit
 
 ## Sketches
 
-### esp3_hello
+### esp32_hello
 
 **esp3_hello.ino** is a Hello World sketch for [Heltec WiFi kit 32](https://github.com/HelTecAutomation/Heltec_ESP32). Not much to look at, just a first program to learn about the tools and board.
 
 ### web_server
 
 **web_server.ino** hosts a WiFi access point and simple web server that responds to a few GET requests. Get `/H` to turn on the built-in LED, and get `/L` to turn it off. Requests are logged to serial console and OLED display.
+
+### scan-n-show.ino
+
+**scan-n-show.ino** scans for WiFi networks and displays them on the OLED display. It also logs the scan results to the serial console.
 
 ## Resources
 
