@@ -16,6 +16,10 @@ This repository contains several Arduino sketches, written for Heltec's Wifi kit
 
 **scan-n-show.ino** scans for WiFi networks and displays them on the OLED display. It also logs the scan results to the serial console.
 
+### ble_server.ino
+
+**ble_server.ino** hosts a BLE server that advertises an attribute with a read/write characteristic. Use nRF Connect or similar app to connect, read, and write to the characteristic.
+
 ## Resources
 
 - [Heltec ESP32 Documentation](https://docs.heltec.org)
