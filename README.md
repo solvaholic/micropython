@@ -12,11 +12,13 @@ This repository contains several Arduino sketches, written for Heltec's Wifi kit
 
 **web_server.ino** hosts a WiFi access point and simple web server that responds to a few GET requests. Get `/H` to turn on the built-in LED, and get `/L` to turn it off. Requests are logged to serial console and OLED display.
 
-### scan-n-show.ino
+### scan-n-show
 
 **scan-n-show.ino** scans for WiFi networks and displays them on the OLED display. It also logs the scan results to the serial console.
 
-### ble_server.ino
+### ble_server
+
+TODO: Add a write-able characteristic to set built-in LED on/off.
 
 **ble_server.ino** hosts a BLE server that advertises an attribute with a read/write characteristic. Use nRF Connect or similar app to connect, read, and write to the characteristic.
 
