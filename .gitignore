@@ -1,8 +1,13 @@
-*_index.json
+*.bin
 *.sig
+*_index.json
 arduino-cli.yaml
+bin
+include
 inventory.yaml
+lib
 libraries
 packages
+pyvenv.cfg
 sketch.yaml
 staging
