@@ -105,14 +105,14 @@ Hard resetting via RTS pin...
 Run `esptool.py` to `write_flash` to the board's flash memory. For example:
 
 ```shell
-esptool.py --chip esp32 --port /dev/tty.usbserial-0001 write_flash -z 0x1000 
+esptool.py --chip esp32 --port /dev/tty.usbserial-0001 write_flash -z 0x1000 ESP32_GENERIC-20231227-v1.22.0.bin
 ```
 
 <details><summary>Expand to see example output.</summary>
 <p>
 
 ```text
-(micropython) % esptool.py --chip esp32 --port /dev/tty.usbserial-0001 write_flash -z 0x1000 ESP32_GENERIC-20231227-v1.22.0.bin 
+(micropython) % esptool.py --chip esp32 --port /dev/tty.usbserial-0001 write_flash -z 0x1000 ESP32_GENERIC-20231227-v1.22.0.bin
 esptool.py v4.7.0
 Serial port /dev/tty.usbserial-0001
 Connecting....

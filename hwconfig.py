@@ -20,6 +20,22 @@ class OLED(SSD1306_I2C):
         # Call ss1306.SSD1306_I2C
         super(OLED, self).__init__(128, 64, oled_i2c)
 
+# Use WLAN as a station
+# https://docs.micropython.org/en/latest/esp32/quickref.html#wlan
+class WLAN_STA():
+    def __init__(self, ssid='', key='', active=True):
+        # Deactivate any active WLAN interface
+        WLAN(STA_IF).active(False)
+        WLAN(AP_IF).active(False)
+        # create station interface
+        self.sta = WLAN(STA_IF)
+        # activate or deactivate the interface
+        self.sta.active(active)
+        # connect to an AP, if credentials provided
+        if active and ssid and key:
+            self.sta.connect(ssid, key)
+            # TODO: wait for connection
+
 # Host a WiFi access point
 # https://docs.micropython.org/en/latest/esp32/quickref.html#wlan
 class WLAN_AP():
