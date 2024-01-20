@@ -22,7 +22,7 @@ This repository contains several Python scripts, written for Heltec's Wifi kit 3
 
 TODO: Add a write-able characteristic to set built-in LED on/off.
 
-**ble_server.ino** hosts a BLE server that advertises an attribute with a read/write characteristic. Use nRF Connect or similar app to connect, read, and write to the characteristic.
+**ble_server.py** hosts a BLE server that advertises an attribute with a read/write characteristic. Use nRF Connect or similar app to connect and read the characteristic.
 
 ## Resources
 

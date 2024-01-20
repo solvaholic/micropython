@@ -5,7 +5,7 @@ Get started with MicroPython
 Find the latest appropriate .bin file for your board in **micropython/micropython** on GitHub:
 https://github.com/micropython/micropython/releases/latest
 
-The examples in this document ran successfully with [**ESP32_GENERIC-20231227-v1.22.0.bin**](https://micropython.org/resources/firmware/ESP32_GENERIC-20231227-v1.22.0.bin) on a [Heltec Wifi Kit 32 v2]().
+The examples in this document ran successfully with [**ESP32_GENERIC-20240105-v1.22.1.bin**](https://micropython.org/resources/firmware/ESP32_GENERIC-20240105-v1.22.1.bin) on a [Heltec Wifi Kit 32 v2](https://resource.heltec.cn/download/WiFi_Kit_32/WiFi%20Kit32.pdf).
 
 ## Activate virtual environment
 
@@ -102,17 +102,19 @@ Hard resetting via RTS pin...
 
 ### Write the board's firmware
 
+**_Note: Commands shown here are one example, and different boards differ. See [**boards.md**](boards.md) for board-specific instructions._**
+
 Run `esptool.py` to `write_flash` to the board's flash memory. For example:
 
 ```shell
-esptool.py --chip esp32 --port /dev/tty.usbserial-0001 write_flash -z 0x1000 ESP32_GENERIC-20231227-v1.22.0.bin
+esptool.py --chip esp32 --port /dev/tty.usbserial-0001 --baud 460800 write_flash -z 0x1000 ESP32_GENERIC-20240105-v1.22.1.bin
 ```
 
 <details><summary>Expand to see example output.</summary>
 <p>
 
 ```text
-(micropython) % esptool.py --chip esp32 --port /dev/tty.usbserial-0001 write_flash -z 0x1000 ESP32_GENERIC-20231227-v1.22.0.bin
+(micropython) % esptool.py --chip esp32 --port /dev/tty.usbserial-0001 write_flash -z 0x1000 ESP32_GENERIC-20240105-v1.22.1.bin
 esptool.py v4.7.0
 Serial port /dev/tty.usbserial-0001
 Connecting....
@@ -183,6 +185,7 @@ In case you need a package that's not already installed, Micropython includes [a
 
 ```shell
 mpremote connect /dev/tty.usbserial-0001 mip install ssd1306
+mpremote connect /dev/tty.usbserial-0001 mip install aioble
 ```
 
 <details><summary>Expand to see example output.</summary>
