@@ -32,7 +32,7 @@ TODO: Link to MicroPython resources. Docs, libraries, well-maintained tutorials,
 
 To get started, clone this repository and open it in your favorite IDE. Create and/or activate a virtual environment, then run **./script/bootstrap.sh** to install required packages.
 
-[**get_started.md**](get_started.md) describes how to set up a board and flash the firmware. See [**boards/boards.md**](boards/boards.md) for notes about different boards.
+[**get_started.md**](get_started.md) describes how to set up a board and flash the firmware. See [**docs/boards.md**](docs/boards.md) for notes about different boards.
 
 TODO: How to get staretd _from scratch_?
 TODO: What about :hwconfig.py?

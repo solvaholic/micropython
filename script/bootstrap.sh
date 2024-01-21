@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # * Ensure virtual environment is active
-# * Install dependencies
+# * Update pip and install dependencies
 # * TODO: Ensure any other prerequisites are met
 
 # Work in the top level directory of this Git repository
