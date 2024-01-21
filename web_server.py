@@ -9,7 +9,7 @@
 from hwconfig import WLAN_AP, LED
 import socket
 
-wlan = WLAN_AP(ssid='wifikit32ap', max_clients=10, active=True)
+wlan = WLAN_AP()
 
 CONTENT = b"""\
 HTTP/1.0 200 OK
