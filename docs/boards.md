@@ -33,4 +33,3 @@ esptool.py \
 write_flash --flash_mode dio --flash_size detect --flash_freq 80m \
 0x0 $_bin
 ```
-

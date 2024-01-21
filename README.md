@@ -1,8 +1,6 @@
-:construction: Work in progress to switch from Arduino to MicroPython, see [#5](https://github.com/solvaholic/arduino/issues/5) :construction:
-
 # MicroPython Scripts Repository
 
-This repository contains several Python scripts, written for Heltec's Wifi kit 32 ESP32 microcontroller running MicroPython.
+This repository contains several Python scripts, written for ESP32 boards running MicroPython.
 
 ## Scripts
 
@@ -26,15 +24,18 @@ TODO: Add a write-able characteristic to set built-in LED on/off.
 
 ## Resources
 
-TODO: Link to MicroPython resources. Docs, libraries, well-maintained tutorials, etc.
+* MicroPython _Quick reference_ for [ESP32](https://docs.micropython.org/en/latest/esp32/quickref.html)
+* MicroPython firmware downloads for [ESP32](https://micropython.org/download/ESP32_GENERIC/) and [ESP32-S3](https://micropython.org/download/ESP32_GENERIC_S3/)
+* MicroPython libraries and examples on GitHub: [**micropython/micropython**](https://github.com/micropython/micropython) and [**micropython/micropython-lib**](https://github.com/micropython/micropython-lib)
+* Heltec Wifi Kit 32 v2 [PDF](https://resource.heltec.cn/download/WiFi_Kit_32/WiFi%20Kit32.pdf), [library](https://github.com/HelTecAutomation/Heltec_ESP32), and [framework](https://github.com/Heltec-Aaron-Lee/WiFi_Kit_series/blob/0aaf0d08b20c2d67aab416ae632320ac11ca7ea6/README.md)
+* Seeed Studio XIAO ESP32S3 guides [_Getting Started_](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/) and [_MicroPython_](https://wiki.seeedstudio.com/XIAO_ESP32S3_Micropython/)
 
 ## Getting Started
 
 To get started, clone this repository and open it in your favorite IDE. Create and/or activate a virtual environment, then run **./script/bootstrap.sh** to install required packages.
 
-[**get_started.md**](get_started.md) describes how to set up a board and flash the firmware. See [**docs/boards.md**](docs/boards.md) for notes about different boards.
+[**get_started.md**](get_started.md) describes where to download MicroPython and how to install it on a board and begin using it. See [**docs/boards.md**](docs/boards.md) for notes about different boards.
 
-TODO: How to get staretd _from scratch_?
 TODO: What about :hwconfig.py?
 TODO: And what else?
 
