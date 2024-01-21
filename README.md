@@ -1,10 +1,10 @@
 :construction: Work in progress to switch from Arduino to MicroPython, see [#5](https://github.com/solvaholic/arduino/issues/5) :construction:
 
-# MicroPython Sketches Repository
+# MicroPython Scripts Repository
 
 This repository contains several Python scripts, written for Heltec's Wifi kit 32 ESP32 microcontroller running MicroPython.
 
-## Sketches
+## Scripts
 
 ### esp32_hello
 
@@ -30,9 +30,13 @@ TODO: Link to MicroPython resources. Docs, libraries, well-maintained tutorials,
 
 ## Getting Started
 
-To get started, clone this repository and open the sketches in your Arduino IDE. Each sketch directory contains a .ino file that can be directly opened in the Arduino IDE.
+To get started, clone this repository and open it in your favorite IDE. Create and/or activate a virtual environment, then run **./script/bootstrap.sh** to install required packages.
 
-If you'd like to use `arduino-cli` and a different IDE, you can use **./script/bootstrap.sh** to install the board and libraries. The scripts in **./script** have been tested manually in MacOS 14; They assume you already have `arduino-cli` installed.
+[**get_started.md**](get_started.md) describes how to set up a board and flash the firmware. See [**boards/boards.md**](boards/boards.md) for notes about different boards.
+
+TODO: How to get staretd _from scratch_?
+TODO: What about :hwconfig.py?
+TODO: And what else?
 
 ## Contributing
 
